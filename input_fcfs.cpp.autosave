@@ -1,0 +1,65 @@
+#include "input_fcfs.h"
+#include "ui_input_fcfs.h"
+#include <QString>
+input_fcfs::input_fcfs(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::input_fcfs)
+{
+    ui->setupUi(this);
+}
+
+input_fcfs::~input_fcfs()
+{
+    delete ui;
+}
+int i=0;
+QString process[10];
+
+QString ArrivalTime[10];
+QString BurstTime[10];
+void input_fcfs::on_PB_next_clicked()
+{
+    process[i]=ui->lineEdit_name->text();
+    ArrivalTime[i]=ui->lineEdit_arrival->text();
+    BurstTime[i]=ui->lineEdit_burst->text();
+    i++;
+    ui->lineEdit_name->clear();
+    ui->lineEdit_arrival->clear();
+    ui->lineEdit_burst->clear();
+    
+    
+
+}
+
+
+void input_fcfs::on_PB_finish_clicked()
+{
+    void Sort_arriaval_time(QVector <QString> &Process, QVector <int>&ArrivalTime, QVector <int> &BurstTime, int &size) {
+        int temp_at;
+        int temp_bt;
+        QString temp_Process;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++)
+            {
+                if (ArrivalTime[i] < ArrivalTime[j]) {
+                    // swaping arrival time
+                    temp_at = ArrivalTime[i];
+                    ArrivalTime[i] = ArrivalTime[j];
+                    ArrivalTime[j] = temp_at;
+                    //swaping bt
+                    temp_bt = BurstTime[i];
+                    BurstTime[i] = BurstTime[j];
+                    BurstTime[j] = temp_bt;
+                    //swaping process
+                    temp_Process = Process[i];
+                    Process[i] = Process[j];
+                    Process[j] = temp_Process;
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+}
